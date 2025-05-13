@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microservicios</title>
+</head>
+<body>
+    <h1>Microservicios en acción</h1>
+
+    <h2>Hora del Sistema (Heroku)</h2>
+    <button onclick="getHora()">Obtener Hora</button>
+    <p id="hora"></p>
+
+    <h2>Sumar (DigitalOcean)</h2>
+    <button onclick="sumarNumeros()">Sumar 5 + 7</button>
+    <p id="suma"></p>
+
+    <h2>Saludo (Railway)</h2>
+    <button onclick="saludo()">Saludar</button>
+    <p id="saludo"></p>
+
+    <h2>Restar (Vercel)</h2>
+    <button onclick="restarNumeros()">Restar 10 - 5</button>
+    <p id="resta"></p>
+
+    <script>
+        function getHora() {
+            fetch('https://heroku-hora-96908fd09f4d.herokuapp.com/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("hora").innerText = "Hora actual: " + data.hora_actual;
+                })
+                .catch(error => console.error("Error al obtener la hora:", error));
+        }
+
+        function sumarNumeros() {
+            fetch('https://your-digitalocean-url.com/sumar?a=5&b=7')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("suma").innerText = "Resultado de la suma: " + data.resultado;
+                })
+                .catch(error => console.error("Error al sumar:", error));
+        }
+
+        function saludo() {
+            fetch('https://your-railway-url.com')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("saludo").innerText = data.message;
+                })
+                .catch(error => console.error("Error al saludar:", error));
+        }
+
+        function restarNumeros() {
+            fetch('https://your-vercel-url.vercel.app/api/restar?a=10&b=5')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("resta").innerText = "Resultado de la resta: " + data.resultado;
+                })
+                .catch(error => console.error("Error al restar:", error));
+        }
+    </script>
+</body>
+</html>
